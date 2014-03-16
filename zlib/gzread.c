@@ -3,6 +3,7 @@
  * For conditions of distribution and use, see copyright notice in zlib.h
  */
 
+#include <unistd.h>
 #include "gzguts.h"
 
 /* Local functions */
@@ -28,7 +29,8 @@ local int gz_load(state, buf, len, have)
 
     *have = 0;
     do {
-        ret = read(state->fd, buf + *have, len - *have);
+        ssize_t myret;
+        ret = read(state->fd, (buf + *have), (len - *have));
         if (ret <= 0)
             break;
         *have += ret;

@@ -1,0 +1,528 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4C64AC3318D4D4920060D651 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C64AC3218D4D4920060D651 /* SDL2.framework */; };
+		4CB8169D18D52E1C002FF815 /* cookrpggame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB8169918D52E1C002FF815 /* cookrpggame.cpp */; };
+		4CB8169E18D52E1C002FF815 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB8169A18D52E1C002FF815 /* main.cpp */; };
+		4CB8169F18D52E1C002FF815 /* sdl2app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB8169B18D52E1C002FF815 /* sdl2app.cpp */; };
+		4CB816A018D52E1C002FF815 /* tmxmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB8169C18D52E1C002FF815 /* tmxmap.cpp */; };
+		4CB816A718D52E3B002FF815 /* tinystr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816A318D52E3B002FF815 /* tinystr.cpp */; };
+		4CB816A818D52E3B002FF815 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816A418D52E3B002FF815 /* tinyxml.cpp */; };
+		4CB816A918D52E3B002FF815 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816A518D52E3B002FF815 /* tinyxmlerror.cpp */; };
+		4CB816AA18D52E3B002FF815 /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816A618D52E3B002FF815 /* tinyxmlparser.cpp */; };
+		4CB816CD18D52E6E002FF815 /* TmxEllipse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816BC18D52E6E002FF815 /* TmxEllipse.cpp */; };
+		4CB816CE18D52E6E002FF815 /* TmxImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816BD18D52E6E002FF815 /* TmxImage.cpp */; };
+		4CB816CF18D52E6E002FF815 /* TmxImageLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816BE18D52E6E002FF815 /* TmxImageLayer.cpp */; };
+		4CB816D018D52E6E002FF815 /* TmxLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816BF18D52E6E002FF815 /* TmxLayer.cpp */; };
+		4CB816D118D52E6E002FF815 /* TmxMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816C018D52E6E002FF815 /* TmxMap.cpp */; };
+		4CB816D218D52E6E002FF815 /* TmxObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816C118D52E6E002FF815 /* TmxObject.cpp */; };
+		4CB816D318D52E6E002FF815 /* TmxObjectGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816C218D52E6E002FF815 /* TmxObjectGroup.cpp */; };
+		4CB816D418D52E6E002FF815 /* TmxPolygon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816C318D52E6E002FF815 /* TmxPolygon.cpp */; };
+		4CB816D518D52E6E002FF815 /* TmxPolyline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816C418D52E6E002FF815 /* TmxPolyline.cpp */; };
+		4CB816D618D52E6E002FF815 /* TmxPropertySet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816C518D52E6E002FF815 /* TmxPropertySet.cpp */; };
+		4CB816D718D52E6E002FF815 /* TmxTile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816C618D52E6E002FF815 /* TmxTile.cpp */; };
+		4CB816D818D52E6E002FF815 /* TmxTileset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816C718D52E6E002FF815 /* TmxTileset.cpp */; };
+		4CB816D918D52E6E002FF815 /* TmxUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816C818D52E6E002FF815 /* TmxUtil.cpp */; };
+		4CB816DA18D52E6E002FF815 /* base64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816CA18D52E6E002FF815 /* base64.cpp */; };
+		4CB816F718D52EA6002FF815 /* adler32.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816DD18D52EA6002FF815 /* adler32.c */; };
+		4CB816F818D52EA6002FF815 /* compress.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816DE18D52EA6002FF815 /* compress.c */; };
+		4CB816F918D52EA6002FF815 /* crc32.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816DF18D52EA6002FF815 /* crc32.c */; };
+		4CB816FA18D52EA6002FF815 /* deflate.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816E118D52EA6002FF815 /* deflate.c */; };
+		4CB816FB18D52EA6002FF815 /* gzclose.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816E318D52EA6002FF815 /* gzclose.c */; };
+		4CB816FC18D52EA6002FF815 /* gzlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816E518D52EA6002FF815 /* gzlib.c */; };
+		4CB816FD18D52EA6002FF815 /* gzread.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816E618D52EA6002FF815 /* gzread.c */; };
+		4CB816FE18D52EA6002FF815 /* gzwrite.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816E718D52EA6002FF815 /* gzwrite.c */; };
+		4CB816FF18D52EA6002FF815 /* infback.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816E818D52EA6002FF815 /* infback.c */; };
+		4CB8170018D52EA6002FF815 /* inffast.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816E918D52EA6002FF815 /* inffast.c */; };
+		4CB8170118D52EA6002FF815 /* inflate.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816EC18D52EA6002FF815 /* inflate.c */; };
+		4CB8170218D52EA6002FF815 /* inftrees.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816EE18D52EA6002FF815 /* inftrees.c */; };
+		4CB8170318D52EA6002FF815 /* trees.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816F018D52EA6002FF815 /* trees.c */; };
+		4CB8170418D52EA6002FF815 /* uncompr.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816F218D52EA6002FF815 /* uncompr.c */; };
+		4CB8170518D52EA6002FF815 /* zutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CB816F518D52EA6002FF815 /* zutil.c */; };
+		4CB8170C18D53C4D002FF815 /* cookrpg.1 in Copy Files */ = {isa = PBXBuildFile; fileRef = 4C64AC2B18D4D41C0060D651 /* cookrpg.1 */; };
+		4CB8170F18D65DB2002FF815 /* example.tmx in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4CB8170918D53A81002FF815 /* example.tmx */; };
+		4CB8171118D65E86002FF815 /* tmw_desert_spacing.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4CB8171018D65E7E002FF815 /* tmw_desert_spacing.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4C64AC2418D4D41C0060D651 /* Copy Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1;
+			dstSubfolderSpec = 0;
+			files = (
+				4CB8170C18D53C4D002FF815 /* cookrpg.1 in Copy Files */,
+			);
+			name = "Copy Files";
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		4CB8170D18D65D9B002FF815 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				4CB8171118D65E86002FF815 /* tmw_desert_spacing.png in CopyFiles */,
+				4CB8170F18D65DB2002FF815 /* example.tmx in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		4C64AC2618D4D41C0060D651 /* cookrpg */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cookrpg; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C64AC2B18D4D41C0060D651 /* cookrpg.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = cookrpg.1; sourceTree = "<group>"; };
+		4C64AC3218D4D4920060D651 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		4CB8169418D52E1C002FF815 /* cookrpggame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cookrpggame.h; path = ../../../../cookrpggame.h; sourceTree = "<group>"; };
+		4CB8169518D52E1C002FF815 /* gameinterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gameinterface.h; path = ../../../../gameinterface.h; sourceTree = "<group>"; };
+		4CB8169618D52E1C002FF815 /* log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = log.h; path = ../../../../log.h; sourceTree = "<group>"; };
+		4CB8169718D52E1C002FF815 /* sdl2app.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sdl2app.h; path = ../../../../sdl2app.h; sourceTree = "<group>"; };
+		4CB8169818D52E1C002FF815 /* tmxmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tmxmap.h; path = ../../../../tmxmap.h; sourceTree = "<group>"; };
+		4CB8169918D52E1C002FF815 /* cookrpggame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cookrpggame.cpp; path = ../../../../cookrpggame.cpp; sourceTree = "<group>"; };
+		4CB8169A18D52E1C002FF815 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../../../main.cpp; sourceTree = "<group>"; };
+		4CB8169B18D52E1C002FF815 /* sdl2app.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sdl2app.cpp; path = ../../../../sdl2app.cpp; sourceTree = "<group>"; };
+		4CB8169C18D52E1C002FF815 /* tmxmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tmxmap.cpp; path = ../../../../tmxmap.cpp; sourceTree = "<group>"; };
+		4CB816A118D52E3B002FF815 /* tinystr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tinystr.h; path = ../../../../tinyxml/tinystr.h; sourceTree = "<group>"; };
+		4CB816A218D52E3B002FF815 /* tinyxml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tinyxml.h; path = ../../../../tinyxml/tinyxml.h; sourceTree = "<group>"; };
+		4CB816A318D52E3B002FF815 /* tinystr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tinystr.cpp; path = ../../../../tinyxml/tinystr.cpp; sourceTree = "<group>"; };
+		4CB816A418D52E3B002FF815 /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tinyxml.cpp; path = ../../../../tinyxml/tinyxml.cpp; sourceTree = "<group>"; };
+		4CB816A518D52E3B002FF815 /* tinyxmlerror.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tinyxmlerror.cpp; path = ../../../../tinyxml/tinyxmlerror.cpp; sourceTree = "<group>"; };
+		4CB816A618D52E3B002FF815 /* tinyxmlparser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tinyxmlparser.cpp; path = ../../../../tinyxml/tinyxmlparser.cpp; sourceTree = "<group>"; };
+		4CB816AC18D52E6E002FF815 /* Tmx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tmx.h; path = ../../../../tmxparser/Tmx.h; sourceTree = "<group>"; };
+		4CB816AD18D52E6E002FF815 /* TmxEllipse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TmxEllipse.h; path = ../../../../tmxparser/TmxEllipse.h; sourceTree = "<group>"; };
+		4CB816AE18D52E6E002FF815 /* TmxImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TmxImage.h; path = ../../../../tmxparser/TmxImage.h; sourceTree = "<group>"; };
+		4CB816AF18D52E6E002FF815 /* TmxImageLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TmxImageLayer.h; path = ../../../../tmxparser/TmxImageLayer.h; sourceTree = "<group>"; };
+		4CB816B018D52E6E002FF815 /* TmxLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TmxLayer.h; path = ../../../../tmxparser/TmxLayer.h; sourceTree = "<group>"; };
+		4CB816B118D52E6E002FF815 /* TmxMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TmxMap.h; path = ../../../../tmxparser/TmxMap.h; sourceTree = "<group>"; };
+		4CB816B218D52E6E002FF815 /* TmxMapTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TmxMapTile.h; path = ../../../../tmxparser/TmxMapTile.h; sourceTree = "<group>"; };
+		4CB816B318D52E6E002FF815 /* TmxObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TmxObject.h; path = ../../../../tmxparser/TmxObject.h; sourceTree = "<group>"; };
+		4CB816B418D52E6E002FF815 /* TmxObjectGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TmxObjectGroup.h; path = ../../../../tmxparser/TmxObjectGroup.h; sourceTree = "<group>"; };
+		4CB816B518D52E6E002FF815 /* TmxPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TmxPoint.h; path = ../../../../tmxparser/TmxPoint.h; sourceTree = "<group>"; };
+		4CB816B618D52E6E002FF815 /* TmxPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TmxPolygon.h; path = ../../../../tmxparser/TmxPolygon.h; sourceTree = "<group>"; };
+		4CB816B718D52E6E002FF815 /* TmxPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TmxPolyline.h; path = ../../../../tmxparser/TmxPolyline.h; sourceTree = "<group>"; };
+		4CB816B818D52E6E002FF815 /* TmxPropertySet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TmxPropertySet.h; path = ../../../../tmxparser/TmxPropertySet.h; sourceTree = "<group>"; };
+		4CB816B918D52E6E002FF815 /* TmxTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TmxTile.h; path = ../../../../tmxparser/TmxTile.h; sourceTree = "<group>"; };
+		4CB816BA18D52E6E002FF815 /* TmxTileset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TmxTileset.h; path = ../../../../tmxparser/TmxTileset.h; sourceTree = "<group>"; };
+		4CB816BB18D52E6E002FF815 /* TmxUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TmxUtil.h; path = ../../../../tmxparser/TmxUtil.h; sourceTree = "<group>"; };
+		4CB816BC18D52E6E002FF815 /* TmxEllipse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TmxEllipse.cpp; path = ../../../../tmxparser/TmxEllipse.cpp; sourceTree = "<group>"; };
+		4CB816BD18D52E6E002FF815 /* TmxImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TmxImage.cpp; path = ../../../../tmxparser/TmxImage.cpp; sourceTree = "<group>"; };
+		4CB816BE18D52E6E002FF815 /* TmxImageLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TmxImageLayer.cpp; path = ../../../../tmxparser/TmxImageLayer.cpp; sourceTree = "<group>"; };
+		4CB816BF18D52E6E002FF815 /* TmxLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TmxLayer.cpp; path = ../../../../tmxparser/TmxLayer.cpp; sourceTree = "<group>"; };
+		4CB816C018D52E6E002FF815 /* TmxMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TmxMap.cpp; path = ../../../../tmxparser/TmxMap.cpp; sourceTree = "<group>"; };
+		4CB816C118D52E6E002FF815 /* TmxObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TmxObject.cpp; path = ../../../../tmxparser/TmxObject.cpp; sourceTree = "<group>"; };
+		4CB816C218D52E6E002FF815 /* TmxObjectGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TmxObjectGroup.cpp; path = ../../../../tmxparser/TmxObjectGroup.cpp; sourceTree = "<group>"; };
+		4CB816C318D52E6E002FF815 /* TmxPolygon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TmxPolygon.cpp; path = ../../../../tmxparser/TmxPolygon.cpp; sourceTree = "<group>"; };
+		4CB816C418D52E6E002FF815 /* TmxPolyline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TmxPolyline.cpp; path = ../../../../tmxparser/TmxPolyline.cpp; sourceTree = "<group>"; };
+		4CB816C518D52E6E002FF815 /* TmxPropertySet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TmxPropertySet.cpp; path = ../../../../tmxparser/TmxPropertySet.cpp; sourceTree = "<group>"; };
+		4CB816C618D52E6E002FF815 /* TmxTile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TmxTile.cpp; path = ../../../../tmxparser/TmxTile.cpp; sourceTree = "<group>"; };
+		4CB816C718D52E6E002FF815 /* TmxTileset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TmxTileset.cpp; path = ../../../../tmxparser/TmxTileset.cpp; sourceTree = "<group>"; };
+		4CB816C818D52E6E002FF815 /* TmxUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TmxUtil.cpp; path = ../../../../tmxparser/TmxUtil.cpp; sourceTree = "<group>"; };
+		4CB816CA18D52E6E002FF815 /* base64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base64.cpp; sourceTree = "<group>"; };
+		4CB816CB18D52E6E002FF815 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
+		4CB816CC18D52E6E002FF815 /* TmxParser.vcproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = TmxParser.vcproj; path = ../../../../tmxparser/TmxParser.vcproj; sourceTree = "<group>"; };
+		4CB816DD18D52EA6002FF815 /* adler32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = adler32.c; sourceTree = "<group>"; };
+		4CB816DE18D52EA6002FF815 /* compress.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = compress.c; sourceTree = "<group>"; };
+		4CB816DF18D52EA6002FF815 /* crc32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crc32.c; sourceTree = "<group>"; };
+		4CB816E018D52EA6002FF815 /* crc32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crc32.h; sourceTree = "<group>"; };
+		4CB816E118D52EA6002FF815 /* deflate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = deflate.c; sourceTree = "<group>"; };
+		4CB816E218D52EA6002FF815 /* deflate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deflate.h; sourceTree = "<group>"; };
+		4CB816E318D52EA6002FF815 /* gzclose.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gzclose.c; sourceTree = "<group>"; };
+		4CB816E418D52EA6002FF815 /* gzguts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gzguts.h; sourceTree = "<group>"; };
+		4CB816E518D52EA6002FF815 /* gzlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gzlib.c; sourceTree = "<group>"; };
+		4CB816E618D52EA6002FF815 /* gzread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gzread.c; sourceTree = "<group>"; };
+		4CB816E718D52EA6002FF815 /* gzwrite.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gzwrite.c; sourceTree = "<group>"; };
+		4CB816E818D52EA6002FF815 /* infback.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = infback.c; sourceTree = "<group>"; };
+		4CB816E918D52EA6002FF815 /* inffast.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = inffast.c; sourceTree = "<group>"; };
+		4CB816EA18D52EA6002FF815 /* inffast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inffast.h; sourceTree = "<group>"; };
+		4CB816EB18D52EA6002FF815 /* inffixed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inffixed.h; sourceTree = "<group>"; };
+		4CB816EC18D52EA6002FF815 /* inflate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = inflate.c; sourceTree = "<group>"; };
+		4CB816ED18D52EA6002FF815 /* inflate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inflate.h; sourceTree = "<group>"; };
+		4CB816EE18D52EA6002FF815 /* inftrees.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = inftrees.c; sourceTree = "<group>"; };
+		4CB816EF18D52EA6002FF815 /* inftrees.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inftrees.h; sourceTree = "<group>"; };
+		4CB816F018D52EA6002FF815 /* trees.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = trees.c; sourceTree = "<group>"; };
+		4CB816F118D52EA6002FF815 /* trees.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trees.h; sourceTree = "<group>"; };
+		4CB816F218D52EA6002FF815 /* uncompr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = uncompr.c; sourceTree = "<group>"; };
+		4CB816F318D52EA6002FF815 /* zconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zconf.h; sourceTree = "<group>"; };
+		4CB816F418D52EA6002FF815 /* zlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zlib.h; sourceTree = "<group>"; };
+		4CB816F518D52EA6002FF815 /* zutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zutil.c; sourceTree = "<group>"; };
+		4CB816F618D52EA6002FF815 /* zutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zutil.h; sourceTree = "<group>"; };
+		4CB8170918D53A81002FF815 /* example.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = example.tmx; path = ../../resources/example.tmx; sourceTree = "<group>"; };
+		4CB8171018D65E7E002FF815 /* tmw_desert_spacing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tmw_desert_spacing.png; path = ../../resources/tmw_desert_spacing.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4C64AC2318D4D41C0060D651 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C64AC3318D4D4920060D651 /* SDL2.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4C64AC1D18D4D41C0060D651 = {
+			isa = PBXGroup;
+			children = (
+				4CB8171018D65E7E002FF815 /* tmw_desert_spacing.png */,
+				4CB8170918D53A81002FF815 /* example.tmx */,
+				4C64AC3218D4D4920060D651 /* SDL2.framework */,
+				4C64AC2818D4D41C0060D651 /* cookrpg */,
+				4C64AC2718D4D41C0060D651 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4C64AC2718D4D41C0060D651 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4C64AC2618D4D41C0060D651 /* cookrpg */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4C64AC2818D4D41C0060D651 /* cookrpg */ = {
+			isa = PBXGroup;
+			children = (
+				4CB816DC18D52EA6002FF815 /* zlib */,
+				4CB816DB18D52E78002FF815 /* tmxparser */,
+				4CB816AB18D52E4F002FF815 /* tinyxml */,
+				4CB8169418D52E1C002FF815 /* cookrpggame.h */,
+				4CB8169518D52E1C002FF815 /* gameinterface.h */,
+				4CB8169618D52E1C002FF815 /* log.h */,
+				4CB8169718D52E1C002FF815 /* sdl2app.h */,
+				4CB8169818D52E1C002FF815 /* tmxmap.h */,
+				4CB8169918D52E1C002FF815 /* cookrpggame.cpp */,
+				4CB8169A18D52E1C002FF815 /* main.cpp */,
+				4CB8169B18D52E1C002FF815 /* sdl2app.cpp */,
+				4CB8169C18D52E1C002FF815 /* tmxmap.cpp */,
+				4C64AC2B18D4D41C0060D651 /* cookrpg.1 */,
+			);
+			path = cookrpg;
+			sourceTree = "<group>";
+		};
+		4CB816AB18D52E4F002FF815 /* tinyxml */ = {
+			isa = PBXGroup;
+			children = (
+				4CB816A118D52E3B002FF815 /* tinystr.h */,
+				4CB816A218D52E3B002FF815 /* tinyxml.h */,
+				4CB816A318D52E3B002FF815 /* tinystr.cpp */,
+				4CB816A418D52E3B002FF815 /* tinyxml.cpp */,
+				4CB816A518D52E3B002FF815 /* tinyxmlerror.cpp */,
+				4CB816A618D52E3B002FF815 /* tinyxmlparser.cpp */,
+			);
+			name = tinyxml;
+			sourceTree = "<group>";
+		};
+		4CB816C918D52E6E002FF815 /* base64 */ = {
+			isa = PBXGroup;
+			children = (
+				4CB816CA18D52E6E002FF815 /* base64.cpp */,
+				4CB816CB18D52E6E002FF815 /* base64.h */,
+			);
+			name = base64;
+			path = ../../../../tmxparser/base64;
+			sourceTree = "<group>";
+		};
+		4CB816DB18D52E78002FF815 /* tmxparser */ = {
+			isa = PBXGroup;
+			children = (
+				4CB816AC18D52E6E002FF815 /* Tmx.h */,
+				4CB816AD18D52E6E002FF815 /* TmxEllipse.h */,
+				4CB816AE18D52E6E002FF815 /* TmxImage.h */,
+				4CB816AF18D52E6E002FF815 /* TmxImageLayer.h */,
+				4CB816B018D52E6E002FF815 /* TmxLayer.h */,
+				4CB816B118D52E6E002FF815 /* TmxMap.h */,
+				4CB816B218D52E6E002FF815 /* TmxMapTile.h */,
+				4CB816B318D52E6E002FF815 /* TmxObject.h */,
+				4CB816B418D52E6E002FF815 /* TmxObjectGroup.h */,
+				4CB816B518D52E6E002FF815 /* TmxPoint.h */,
+				4CB816B618D52E6E002FF815 /* TmxPolygon.h */,
+				4CB816B718D52E6E002FF815 /* TmxPolyline.h */,
+				4CB816B818D52E6E002FF815 /* TmxPropertySet.h */,
+				4CB816B918D52E6E002FF815 /* TmxTile.h */,
+				4CB816BA18D52E6E002FF815 /* TmxTileset.h */,
+				4CB816BB18D52E6E002FF815 /* TmxUtil.h */,
+				4CB816BC18D52E6E002FF815 /* TmxEllipse.cpp */,
+				4CB816BD18D52E6E002FF815 /* TmxImage.cpp */,
+				4CB816BE18D52E6E002FF815 /* TmxImageLayer.cpp */,
+				4CB816BF18D52E6E002FF815 /* TmxLayer.cpp */,
+				4CB816C018D52E6E002FF815 /* TmxMap.cpp */,
+				4CB816C118D52E6E002FF815 /* TmxObject.cpp */,
+				4CB816C218D52E6E002FF815 /* TmxObjectGroup.cpp */,
+				4CB816C318D52E6E002FF815 /* TmxPolygon.cpp */,
+				4CB816C418D52E6E002FF815 /* TmxPolyline.cpp */,
+				4CB816C518D52E6E002FF815 /* TmxPropertySet.cpp */,
+				4CB816C618D52E6E002FF815 /* TmxTile.cpp */,
+				4CB816C718D52E6E002FF815 /* TmxTileset.cpp */,
+				4CB816C818D52E6E002FF815 /* TmxUtil.cpp */,
+				4CB816C918D52E6E002FF815 /* base64 */,
+				4CB816CC18D52E6E002FF815 /* TmxParser.vcproj */,
+			);
+			name = tmxparser;
+			sourceTree = "<group>";
+		};
+		4CB816DC18D52EA6002FF815 /* zlib */ = {
+			isa = PBXGroup;
+			children = (
+				4CB816DD18D52EA6002FF815 /* adler32.c */,
+				4CB816DE18D52EA6002FF815 /* compress.c */,
+				4CB816DF18D52EA6002FF815 /* crc32.c */,
+				4CB816E018D52EA6002FF815 /* crc32.h */,
+				4CB816E118D52EA6002FF815 /* deflate.c */,
+				4CB816E218D52EA6002FF815 /* deflate.h */,
+				4CB816E318D52EA6002FF815 /* gzclose.c */,
+				4CB816E418D52EA6002FF815 /* gzguts.h */,
+				4CB816E518D52EA6002FF815 /* gzlib.c */,
+				4CB816E618D52EA6002FF815 /* gzread.c */,
+				4CB816E718D52EA6002FF815 /* gzwrite.c */,
+				4CB816E818D52EA6002FF815 /* infback.c */,
+				4CB816E918D52EA6002FF815 /* inffast.c */,
+				4CB816EA18D52EA6002FF815 /* inffast.h */,
+				4CB816EB18D52EA6002FF815 /* inffixed.h */,
+				4CB816EC18D52EA6002FF815 /* inflate.c */,
+				4CB816ED18D52EA6002FF815 /* inflate.h */,
+				4CB816EE18D52EA6002FF815 /* inftrees.c */,
+				4CB816EF18D52EA6002FF815 /* inftrees.h */,
+				4CB816F018D52EA6002FF815 /* trees.c */,
+				4CB816F118D52EA6002FF815 /* trees.h */,
+				4CB816F218D52EA6002FF815 /* uncompr.c */,
+				4CB816F318D52EA6002FF815 /* zconf.h */,
+				4CB816F418D52EA6002FF815 /* zlib.h */,
+				4CB816F518D52EA6002FF815 /* zutil.c */,
+				4CB816F618D52EA6002FF815 /* zutil.h */,
+			);
+			name = zlib;
+			path = ../../../../zlib;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4C64AC2518D4D41C0060D651 /* cookrpg */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C64AC2F18D4D41C0060D651 /* Build configuration list for PBXNativeTarget "cookrpg" */;
+			buildPhases = (
+				4C64AC2218D4D41C0060D651 /* Sources */,
+				4C64AC2318D4D41C0060D651 /* Frameworks */,
+				4C64AC2418D4D41C0060D651 /* Copy Files */,
+				4CB8170D18D65D9B002FF815 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = cookrpg;
+			productName = cookrpg;
+			productReference = 4C64AC2618D4D41C0060D651 /* cookrpg */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4C64AC1E18D4D41C0060D651 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "East Wake Academy Tech Club";
+			};
+			buildConfigurationList = 4C64AC2118D4D41C0060D651 /* Build configuration list for PBXProject "cookrpg" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 4C64AC1D18D4D41C0060D651;
+			productRefGroup = 4C64AC2718D4D41C0060D651 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4C64AC2518D4D41C0060D651 /* cookrpg */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4C64AC2218D4D41C0060D651 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CB816D318D52E6E002FF815 /* TmxObjectGroup.cpp in Sources */,
+				4CB816D418D52E6E002FF815 /* TmxPolygon.cpp in Sources */,
+				4CB8170418D52EA6002FF815 /* uncompr.c in Sources */,
+				4CB816FD18D52EA6002FF815 /* gzread.c in Sources */,
+				4CB816A918D52E3B002FF815 /* tinyxmlerror.cpp in Sources */,
+				4CB816D718D52E6E002FF815 /* TmxTile.cpp in Sources */,
+				4CB816AA18D52E3B002FF815 /* tinyxmlparser.cpp in Sources */,
+				4CB816D018D52E6E002FF815 /* TmxLayer.cpp in Sources */,
+				4CB8170518D52EA6002FF815 /* zutil.c in Sources */,
+				4CB816D818D52E6E002FF815 /* TmxTileset.cpp in Sources */,
+				4CB816FF18D52EA6002FF815 /* infback.c in Sources */,
+				4CB816F918D52EA6002FF815 /* crc32.c in Sources */,
+				4CB8170218D52EA6002FF815 /* inftrees.c in Sources */,
+				4CB816DA18D52E6E002FF815 /* base64.cpp in Sources */,
+				4CB816D518D52E6E002FF815 /* TmxPolyline.cpp in Sources */,
+				4CB816F818D52EA6002FF815 /* compress.c in Sources */,
+				4CB8170318D52EA6002FF815 /* trees.c in Sources */,
+				4CB816CF18D52E6E002FF815 /* TmxImageLayer.cpp in Sources */,
+				4CB816FB18D52EA6002FF815 /* gzclose.c in Sources */,
+				4CB816D618D52E6E002FF815 /* TmxPropertySet.cpp in Sources */,
+				4CB816CE18D52E6E002FF815 /* TmxImage.cpp in Sources */,
+				4CB816A718D52E3B002FF815 /* tinystr.cpp in Sources */,
+				4CB816FA18D52EA6002FF815 /* deflate.c in Sources */,
+				4CB8170018D52EA6002FF815 /* inffast.c in Sources */,
+				4CB8169D18D52E1C002FF815 /* cookrpggame.cpp in Sources */,
+				4CB816A018D52E1C002FF815 /* tmxmap.cpp in Sources */,
+				4CB816FC18D52EA6002FF815 /* gzlib.c in Sources */,
+				4CB816D218D52E6E002FF815 /* TmxObject.cpp in Sources */,
+				4CB816A818D52E3B002FF815 /* tinyxml.cpp in Sources */,
+				4CB8169F18D52E1C002FF815 /* sdl2app.cpp in Sources */,
+				4CB8170118D52EA6002FF815 /* inflate.c in Sources */,
+				4CB816CD18D52E6E002FF815 /* TmxEllipse.cpp in Sources */,
+				4CB816D918D52E6E002FF815 /* TmxUtil.cpp in Sources */,
+				4CB816D118D52E6E002FF815 /* TmxMap.cpp in Sources */,
+				4CB816FE18D52EA6002FF815 /* gzwrite.c in Sources */,
+				4CB8169E18D52E1C002FF815 /* main.cpp in Sources */,
+				4CB816F718D52EA6002FF815 /* adler32.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4C64AC2D18D4D41C0060D651 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		4C64AC2E18D4D41C0060D651 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		4C64AC3018D4D41C0060D651 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../../../tinyxml,
+				);
+				OTHER_CFLAGS = "-Wno-implicit-function-declaration";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		4C64AC3118D4D41C0060D651 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../../../tinyxml,
+				);
+				OTHER_CFLAGS = "-Wno-implicit-function-declaration";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4C64AC2118D4D41C0060D651 /* Build configuration list for PBXProject "cookrpg" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C64AC2D18D4D41C0060D651 /* Debug */,
+				4C64AC2E18D4D41C0060D651 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4C64AC2F18D4D41C0060D651 /* Build configuration list for PBXNativeTarget "cookrpg" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C64AC3018D4D41C0060D651 /* Debug */,
+				4C64AC3118D4D41C0060D651 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4C64AC1E18D4D41C0060D651 /* Project object */;
+}

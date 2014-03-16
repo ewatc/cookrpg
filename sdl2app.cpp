@@ -71,12 +71,17 @@ bool SDL2Application::init()
         return false;
     }
 
-    mRenderer = SDL_CreateRenderer(mWindow,
-                                   -1,
-                                   SDL_RENDERER_ACCELERATED);
+    // OS X already has a renderer attached to the Window
+    // and unable to create a new one.
+    mRenderer = SDL_GetRenderer(mWindow);
     if (mRenderer == nullptr) {
-        Log(LOG_ERROR, "SDL_CreateRenderer failed: %s", SDL_GetError());
-        return false;
+        mRenderer = SDL_CreateRenderer(mWindow,
+                                       -1,
+                                       SDL_RENDERER_ACCELERATED);
+        if (mRenderer == nullptr) {
+            Log(LOG_ERROR, "SDL_CreateRenderer failed: %s", SDL_GetError());
+            return false;
+        }
     }
 
     SDL_SetRenderDrawColor(mRenderer, 0x00, 0x00, 0x00, 0xFF);
