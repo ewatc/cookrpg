@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 East Wake Academy Tech Club. All rights reserved.
 //
 
-#include <SDL_image/SDL_image.h>
+#include <SDL2/SDL_image.h>
 #include "surface.h"
 #include "log.h"
 
@@ -37,7 +37,7 @@ bool Surface::load()
     if (mSurface == nullptr) {
         Log(LOG_ERROR, "Unable to load image [%s] error: %s",
             mFilename.c_str(), IMG_GetError());
-        
+
         return false;
     } else {
         return true;

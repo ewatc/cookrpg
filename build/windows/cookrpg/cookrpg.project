@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Project Name="cookrpg" InternalType="Console">
   <Plugins>
+    <Plugin Name="qmake">
+      <![CDATA[00010001N0005Debug000000000000]]>
+    </Plugin>
     <Plugin Name="CMakePlugin">
       <![CDATA[[{
 		"name":	"Debug",
@@ -12,9 +15,6 @@
 		"arguments":	[],
 		"parentProject":	""
 	}]]]>
-    </Plugin>
-    <Plugin Name="qmake">
-      <![CDATA[00010001N0005Debug000000000000]]>
     </Plugin>
   </Plugins>
   <Description/>
@@ -29,6 +29,13 @@
     <File Name="../../../gameinterface.h"/>
     <File Name="../../../tmxmap.h"/>
     <File Name="../../../tmxmap.cpp"/>
+    <File Name="../../../surface.cpp"/>
+    <File Name="../../../surface.h"/>
+    <File Name="../../../texture.cpp"/>
+    <File Name="../../../texture.h"/>
+    <File Name="../../../textureinterface.h"/>
+    <File Name="../../../window.cpp"/>
+    <File Name="../../../window.h"/>
   </VirtualDirectory>
   <VirtualDirectory Name="3rd Party Code">
     <VirtualDirectory Name="tinyxml">
@@ -205,4 +212,7 @@
       </Completion>
     </Configuration>
   </Settings>
+  <VirtualDirectory Name="other">
+    <File Name="../../../README.md"/>
+  </VirtualDirectory>
 </CodeLite_Project>

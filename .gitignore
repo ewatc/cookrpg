@@ -11,3 +11,9 @@
 *.lai
 *.la
 *.a
+*.d
+build/windows/cookrpg/.codelite/
+build/windows/cookrpg/Debug/
+build/windows/cookrpg/cookrpg.mk
+build/windows/cookrpg/cookrpg.txt
+build/windows/cookrpg/Makefile
