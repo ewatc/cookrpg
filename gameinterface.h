@@ -2,13 +2,18 @@
 #define _GAMEINTERFACE_H
 
 #include <SDL2/SDL.h>
+#include "window.h"
 
 class GameInterface
 {
 public:
     virtual ~GameInterface() {}
 
-    virtual bool loadResources(SDL_Renderer* renderer) = 0;
+    virtual bool initialize(std::shared_ptr<Window> wnd) = 0;
+    
+    virtual bool shutdown() = 0;
+    
+    virtual bool loadResources() = 0;
 
     virtual bool unloadResources() = 0;
 
@@ -18,7 +23,7 @@ public:
 
     virtual bool onSimulation() = 0;
 
-    virtual bool onRender(SDL_Renderer* renderer) = 0;
+    virtual bool onRender() = 0;
 
     virtual bool onLoopEnd() = 0;
 

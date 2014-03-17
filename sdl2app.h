@@ -4,6 +4,7 @@
 #include <memory>
 #include <SDL2/SDL.h>
 #include "gameinterface.h"
+#include "window.h"
 
 class SDL2Application
 {
@@ -23,9 +24,7 @@ protected:
 private:
     SDL2Application();
 
-    SDL_Window* mWindow;
-    SDL_Renderer* mRenderer;
-    SDL_Surface* mPrimarySurface;
+    std::shared_ptr<Window> mWindow;
 };
 
 

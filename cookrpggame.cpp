@@ -1,15 +1,52 @@
 #include "cookrpggame.h"
 #include "log.h"
 
-CookRPGGame::CookRPGGame()
+CookRPGGame::CookRPGGame() :
+    mWindow(nullptr)
 {
 }
 
 CookRPGGame::~CookRPGGame()
 {
+    if (!unloadResources()) {
+        // error
+    }
+    
+    if (!shutdown()) {
+        // error
+    }
 }
 
-bool CookRPGGame::loadResources(SDL_Renderer* renderer)
+bool CookRPGGame::initialize(std::shared_ptr<Window> wnd)
+{
+    if (wnd == nullptr) {
+        // error
+        return false;
+    }
+    
+    // TODO pass in options
+    if (!wnd->init()) {
+        // error
+        return false;
+    }
+    
+    mWindow = wnd;
+    
+    return true;
+}
+
+bool CookRPGGame::shutdown()
+{
+    if (mWindow != nullptr) {
+        if (!mWindow->uninit()) {
+            // error
+        }
+    }
+    
+    return true;
+}
+
+bool CookRPGGame::loadResources()
 {
     if (!mMap.loadMap("example.tmx")) {
         Log(LOG_ERROR, "unable to load %s map", "example.tmx");
@@ -24,6 +61,8 @@ bool CookRPGGame::unloadResources()
         Log(LOG_ERROR, "unable to unload map");
     }
 
+    
+    
     return true;
 }
 
@@ -42,17 +81,17 @@ bool CookRPGGame::onSimulation()
     return true;
 }
 
-bool CookRPGGame::onRender(SDL_Renderer* renderer)
+bool CookRPGGame::onRender()
 {
     // Clear previous frame
-    SDL_RenderClear(renderer);
+    mWindow->clear();
 
     // Render Map
     // TODO multiple layers
-    mMap.renderLayer(renderer, 0);
+    mMap.renderLayer(mWindow, 0);
 
     // Render current frame
-    SDL_RenderPresent(renderer);
+    mWindow->flip();
 
     return true;
 }

@@ -10,7 +10,11 @@ public:
     CookRPGGame();
     ~CookRPGGame();
 
-    virtual bool loadResources(SDL_Renderer* renderer);
+    virtual bool initialize(std::shared_ptr<Window> wnd);
+    
+    virtual bool shutdown();
+    
+    virtual bool loadResources();
 
     virtual bool unloadResources();
 
@@ -20,12 +24,13 @@ public:
 
     virtual bool onSimulation();
 
-    virtual bool onRender(SDL_Renderer* renderer);
+    virtual bool onRender();
 
     virtual bool onLoopEnd();
 
 private:
     TmxMap mMap;
+    std::shared_ptr<Window> mWindow;
 };
 
 #endif

@@ -113,7 +113,7 @@ bool TmxMap::unloadMap()
     return true;
 }
 
-bool TmxMap::renderLayer(SDL_Renderer* renderer, int layer)
+bool TmxMap::renderLayer(std::shared_ptr<Window> window, int layer)
 {
     return true;
 }

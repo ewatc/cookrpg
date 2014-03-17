@@ -1,5 +1,6 @@
 #include "sdl2app.h"
 #include "log.h"
+#include "window.h"
 
 std::shared_ptr<SDL2Application> SDL2Application::create(int argc, char* argv[])
 {
@@ -23,9 +24,7 @@ std::shared_ptr<SDL2Application> SDL2Application::create(int argc, char* argv[])
 }
 
 SDL2Application::SDL2Application() :
-    mWindow(nullptr),
-    mRenderer(nullptr),
-    mPrimarySurface(nullptr)
+    mWindow(nullptr)
 {
 }
 
@@ -53,53 +52,14 @@ bool SDL2Application::init()
         return false;
     }
 
-    // TODO: Retrieve from Application Options
-    mWindow = SDL_CreateWindow("Cook RPG",
-                               SDL_WINDOWPOS_CENTERED,
-                               SDL_WINDOWPOS_CENTERED,
-                               640,
-                               480,
-                               SDL_WINDOW_SHOWN);
-    if (mWindow == nullptr) {
-        Log(LOG_ERROR, "SDL_CreateWindow failed: %s", SDL_GetError());
-        return false;
-    }
-
-    mPrimarySurface = SDL_GetWindowSurface(mWindow);
-    if (mPrimarySurface == nullptr) {
-        Log(LOG_ERROR, "SDL_GetWindowSurface failed: %s", SDL_GetError());
-        return false;
-    }
-
-    // OS X already has a renderer attached to the Window
-    // and unable to create a new one.
-    mRenderer = SDL_GetRenderer(mWindow);
-    if (mRenderer == nullptr) {
-        mRenderer = SDL_CreateRenderer(mWindow,
-                                       -1,
-                                       SDL_RENDERER_ACCELERATED);
-        if (mRenderer == nullptr) {
-            Log(LOG_ERROR, "SDL_CreateRenderer failed: %s", SDL_GetError());
-            return false;
-        }
-    }
-
-    SDL_SetRenderDrawColor(mRenderer, 0x00, 0x00, 0x00, 0xFF);
-
+    mWindow = Window::create();
+    
     return true;
 }
 
 bool SDL2Application::shutdown()
 {
-    if (mRenderer) {
-        SDL_DestroyRenderer(mRenderer);
-        mRenderer = nullptr;
-    }
-
-    if (mWindow) {
-        SDL_DestroyWindow(mWindow);
-        mWindow = nullptr;
-    }
+    mWindow = nullptr;
 
     SDL_Quit();
 
@@ -116,8 +76,12 @@ void SDL2Application::runGame(GameInterface* game)
         return;
     }
 
-    // TODO: initialize the game
-    if (!game->loadResources(mRenderer)) {
+    if (!game->initialize(mWindow)) {
+        Log(LOG_ERROR, "Unable to initialize game");
+        return;
+    }
+    
+    if (!game->loadResources()) {
         Log(LOG_ERROR, "Unable to load game resources");
         return;
     }
@@ -146,7 +110,7 @@ void SDL2Application::runGame(GameInterface* game)
         }
 
         // do rendering
-        if (!game->onRender(mRenderer)) {
+        if (!game->onRender()) {
             keepRunning = false;
         }
 
@@ -158,6 +122,11 @@ void SDL2Application::runGame(GameInterface* game)
 
     if (!game->unloadResources()) {
         Log(LOG_ERROR, "Unable to unload game resources");
+        return;
+    }
+    
+    if (!game->shutdown()) {
+        Log(LOG_ERROR, "Unable to shutdown game");
         return;
     }
 }

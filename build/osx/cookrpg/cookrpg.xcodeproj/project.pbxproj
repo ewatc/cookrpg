@@ -48,6 +48,10 @@
 		4CB8170C18D53C4D002FF815 /* cookrpg.1 in Copy Files */ = {isa = PBXBuildFile; fileRef = 4C64AC2B18D4D41C0060D651 /* cookrpg.1 */; };
 		4CB8170F18D65DB2002FF815 /* example.tmx in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4CB8170918D53A81002FF815 /* example.tmx */; };
 		4CB8171118D65E86002FF815 /* tmw_desert_spacing.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4CB8171018D65E7E002FF815 /* tmw_desert_spacing.png */; };
+		4CB8171518D664A5002FF815 /* texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB8171318D664A5002FF815 /* texture.cpp */; };
+		4CB8171818D671BB002FF815 /* surface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB8171618D671BB002FF815 /* surface.cpp */; };
+		4CB8171B18D6758C002FF815 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB8171918D6758C002FF815 /* window.cpp */; };
+		4CB8171E18D68C6A002FF815 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CB8171D18D68C6A002FF815 /* SDL2_image.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -154,6 +158,15 @@
 		4CB816F618D52EA6002FF815 /* zutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zutil.h; sourceTree = "<group>"; };
 		4CB8170918D53A81002FF815 /* example.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = example.tmx; path = ../../resources/example.tmx; sourceTree = "<group>"; };
 		4CB8171018D65E7E002FF815 /* tmw_desert_spacing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tmw_desert_spacing.png; path = ../../resources/tmw_desert_spacing.png; sourceTree = "<group>"; };
+		4CB8171218D663BB002FF815 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../../../README.md; sourceTree = "<group>"; };
+		4CB8171318D664A5002FF815 /* texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = texture.cpp; path = ../../../../texture.cpp; sourceTree = "<group>"; };
+		4CB8171418D664A5002FF815 /* texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = texture.h; path = ../../../../texture.h; sourceTree = "<group>"; };
+		4CB8171618D671BB002FF815 /* surface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = surface.cpp; path = ../../../../surface.cpp; sourceTree = "<group>"; };
+		4CB8171718D671BB002FF815 /* surface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = surface.h; path = ../../../../surface.h; sourceTree = "<group>"; };
+		4CB8171918D6758C002FF815 /* window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = window.cpp; path = ../../../../window.cpp; sourceTree = "<group>"; };
+		4CB8171A18D6758C002FF815 /* window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = window.h; path = ../../../../window.h; sourceTree = "<group>"; };
+		4CB8171C18D684C2002FF815 /* textureinterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = textureinterface.h; path = ../../../../textureinterface.h; sourceTree = "<group>"; };
+		4CB8171D18D68C6A002FF815 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +174,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CB8171E18D68C6A002FF815 /* SDL2_image.framework in Frameworks */,
 				4C64AC3318D4D4920060D651 /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -171,6 +185,8 @@
 		4C64AC1D18D4D41C0060D651 = {
 			isa = PBXGroup;
 			children = (
+				4CB8171D18D68C6A002FF815 /* SDL2_image.framework */,
+				4CB8171218D663BB002FF815 /* README.md */,
 				4CB8171018D65E7E002FF815 /* tmw_desert_spacing.png */,
 				4CB8170918D53A81002FF815 /* example.tmx */,
 				4C64AC3218D4D4920060D651 /* SDL2.framework */,
@@ -203,6 +219,13 @@
 				4CB8169B18D52E1C002FF815 /* sdl2app.cpp */,
 				4CB8169C18D52E1C002FF815 /* tmxmap.cpp */,
 				4C64AC2B18D4D41C0060D651 /* cookrpg.1 */,
+				4CB8171318D664A5002FF815 /* texture.cpp */,
+				4CB8171418D664A5002FF815 /* texture.h */,
+				4CB8171618D671BB002FF815 /* surface.cpp */,
+				4CB8171718D671BB002FF815 /* surface.h */,
+				4CB8171918D6758C002FF815 /* window.cpp */,
+				4CB8171A18D6758C002FF815 /* window.h */,
+				4CB8171C18D684C2002FF815 /* textureinterface.h */,
 			);
 			path = cookrpg;
 			sourceTree = "<group>";
@@ -363,6 +386,7 @@
 				4CB816AA18D52E3B002FF815 /* tinyxmlparser.cpp in Sources */,
 				4CB816D018D52E6E002FF815 /* TmxLayer.cpp in Sources */,
 				4CB8170518D52EA6002FF815 /* zutil.c in Sources */,
+				4CB8171518D664A5002FF815 /* texture.cpp in Sources */,
 				4CB816D818D52E6E002FF815 /* TmxTileset.cpp in Sources */,
 				4CB816FF18D52EA6002FF815 /* infback.c in Sources */,
 				4CB816F918D52EA6002FF815 /* crc32.c in Sources */,
@@ -376,9 +400,11 @@
 				4CB816D618D52E6E002FF815 /* TmxPropertySet.cpp in Sources */,
 				4CB816CE18D52E6E002FF815 /* TmxImage.cpp in Sources */,
 				4CB816A718D52E3B002FF815 /* tinystr.cpp in Sources */,
+				4CB8171818D671BB002FF815 /* surface.cpp in Sources */,
 				4CB816FA18D52EA6002FF815 /* deflate.c in Sources */,
 				4CB8170018D52EA6002FF815 /* inffast.c in Sources */,
 				4CB8169D18D52E1C002FF815 /* cookrpggame.cpp in Sources */,
+				4CB8171B18D6758C002FF815 /* window.cpp in Sources */,
 				4CB816A018D52E1C002FF815 /* tmxmap.cpp in Sources */,
 				4CB816FC18D52EA6002FF815 /* gzlib.c in Sources */,
 				4CB816D218D52E6E002FF815 /* TmxObject.cpp in Sources */,

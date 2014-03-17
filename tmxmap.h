@@ -5,6 +5,7 @@
 #include <string>
 #include <SDL2/SDL.h>
 #include "tmxparser/Tmx.h"
+#include "window.h"
 
 class TmxMap
 {
@@ -16,7 +17,7 @@ public:
 
     bool unloadMap();
 
-    bool renderLayer(SDL_Renderer* renderer, int layer);
+    bool renderLayer(std::shared_ptr<Window> window, int layer);
 
 private:
     std::unique_ptr<Tmx::Map> mTmxMap;
