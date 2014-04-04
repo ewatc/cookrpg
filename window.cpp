@@ -109,6 +109,7 @@ std::shared_ptr<TextureInterface> Window::createTexture(std::shared_ptr<Surface>
 
 void Window::render(std::shared_ptr<TextureInterface> texture, SDL_Rect *src, SDL_Rect *dst)
 {
+    SDL_RenderCopy(mRenderer, texture->getSDLTexture(), src, dst);
 }
 
 void Window::clear()

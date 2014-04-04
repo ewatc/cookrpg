@@ -10,6 +10,7 @@
 #define cookrpg_textureinterface_h
 
 #include <SDL2/SDL.h>
+#include <string>
 
 class TextureInterface
 {
@@ -18,6 +19,8 @@ public:
     virtual unsigned int getHeight() const = 0;
     
     virtual SDL_Texture* getSDLTexture() = 0;
+    
+    virtual std::string getFilename() const = 0;
 };
 
 

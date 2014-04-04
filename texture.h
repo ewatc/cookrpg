@@ -26,10 +26,13 @@ public:
     
     unsigned int getWidth() const { return mWidth; }
     unsigned int getHeight() const { return mHeight; }
+    
+    std::string getFilename() const { return mFilename; }
 
     SDL_Texture* getSDLTexture() { return mTexture; }
     
 private:
+    std::string mFilename;
     int mWidth;
     int mHeight;
     

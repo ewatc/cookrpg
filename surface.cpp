@@ -6,7 +6,11 @@
 //  Copyright (c) 2014 East Wake Academy Tech Club. All rights reserved.
 //
 
+#ifdef __APPLE__
+#include <SDL2_image/SDL_image.h>
+#else
 #include <SDL2/SDL_image.h>
+#endif
 #include "surface.h"
 #include "log.h"
 

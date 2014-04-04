@@ -31,6 +31,8 @@ bool Texture::load(std::shared_ptr<Surface> surface)
             return false;
         }
     
+        mFilename = surface->getFilename();
+        
         SDL_QueryTexture(mTexture, nullptr, nullptr, &mWidth, &mHeight);
         
         return true;

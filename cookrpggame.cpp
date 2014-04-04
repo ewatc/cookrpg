@@ -48,8 +48,10 @@ bool CookRPGGame::shutdown()
 
 bool CookRPGGame::loadResources()
 {
-    if (!mMap.loadMap("example.tmx")) {
-        Log(LOG_ERROR, "unable to load %s map", "example.tmx");
+    std::string tmxFile = "game_world.tmx";
+    
+    if (!mMap.loadMap(mWindow, tmxFile.c_str())) {
+        Log(LOG_ERROR, "unable to load %s map", tmxFile.c_str());
     }
 
     return true;
@@ -88,8 +90,10 @@ bool CookRPGGame::onRender()
 
     // Render Map
     // TODO multiple layers
-    mMap.renderLayer(mWindow, 0);
-
+    for (int i=0; i<mMap.layers(); ++i) {
+        mMap.renderLayer(mWindow, i);
+    }
+    
     // Render current frame
     mWindow->flip();
 

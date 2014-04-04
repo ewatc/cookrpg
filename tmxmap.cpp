@@ -1,7 +1,7 @@
 #include "tmxmap.h"
 #include "log.h"
 
-TmxMap::TmxMap()
+TmxMap::TmxMap() : mLayers(0)
 {
 
 }
@@ -11,7 +11,7 @@ TmxMap::~TmxMap()
 
 }
 
-bool TmxMap::loadMap(const std::string& filename)
+bool TmxMap::loadMap(std::shared_ptr<Window> window, const std::string& filename)
 {
     std::unique_ptr<Tmx::Map> map(new Tmx::Map());
 
@@ -40,6 +40,21 @@ bool TmxMap::loadMap(const std::string& filename)
         Log(LOG_DEBUG, "\tImage Source: %s", tileset->GetImage()->GetSource().c_str());
         Log(LOG_DEBUG, "\tTransparent Color (hex): %s", tileset->GetImage()->GetTransparentColor().c_str());
 
+        std::shared_ptr<TextureInterface> texture;
+        std::shared_ptr<Surface> surface = Surface::create(tileset->GetImage()->GetSource());
+        if (!surface->load()) {
+            Log(LOG_ERROR, "Unable to load surface");
+            return false;
+        } else {
+            texture = window->createTexture(surface);
+            if (texture == nullptr) {
+                Log(LOG_ERROR, "Unable to load texture [%s]", surface->getFilename().c_str());
+                return false;
+            }
+        }
+        
+        mTilesetTexture.push_back(texture);
+        
         if (tileset->GetTiles().size() > 0) {
             // Get a tile from the tileset
             const Tmx::Tile *tile = *(tileset->GetTiles().begin());
@@ -50,59 +65,15 @@ bool TmxMap::loadMap(const std::string& filename)
             std::map< std::string, std::string > list = tile->GetProperties().GetList();
             std::map< std::string, std::string >::iterator iter;
             for (iter = list.begin(); iter != list.end(); ++iter) {
-                    Log(LOG_DEBUG, "\t\t%s = %s", iter->first.c_str(), iter->second.c_str());
+                Log(LOG_DEBUG, "\t\t%s = %s", iter->first.c_str(), iter->second.c_str());
             }
-        }
-    }
-
-    // Iterate through the layers
-    for (int i=0; i<map->GetNumLayers(); ++i) {
-        std::string tileInfo;
-        char temp[16];
-        Log(LOG_DEBUG, "Layer: %d Name: %s", i, map->GetLayer(i)->GetName().c_str());
-
-        // Get a layer
-        const Tmx::Layer* layer = map->GetLayer(i);
-
-        for (int y=0; y<layer->GetHeight(); ++y) {
-            for (int x=0; x<layer->GetWidth(); ++x) {
-                char flippedHorizontally = ' ';
-                char flippedVertically = ' ';
-                char flippedDiagonally = ' ';
-
-                if (layer->IsTileFlippedHorizontally(x, y)) {
-                    flippedHorizontally = 'h';
-                }
-
-                if (layer->IsTileFlippedVertically(x, y)) {
-                    flippedVertically = 'v';
-                }
-
-                if (layer->IsTileFlippedDiagonally(x, y)) {
-                    flippedDiagonally = 'd';
-                }
-
-                sprintf(temp, "%03d%c%c%c ",
-                        layer->GetTileId(x, y),
-                        flippedHorizontally,
-                        flippedVertically,
-                        flippedDiagonally);
-
-                tileInfo += temp;
-
-                // Find a tileset for that id
-                const Tmx::Tileset* tileset = map->FindTileset(layer->GetTileId(x, y));
-            }
-
-            // Print out one row
-            Log(LOG_DEBUG, "%s", tileInfo.c_str());
-            tileInfo.clear();
         }
     }
 
     // success
     mTmxMap = std::move(map);
-
+    mLayers = mTmxMap->GetNumLayers();
+    
     return true;
 }
 
@@ -113,7 +84,106 @@ bool TmxMap::unloadMap()
     return true;
 }
 
-bool TmxMap::renderLayer(std::shared_ptr<Window> window, int layer)
+bool TmxMap::renderLayer(std::shared_ptr<Window> window, unsigned int layer)
 {
+    if (layer >= mTmxMap->GetNumLayers()) {
+        // nothing to draw
+        return true;
+    }
+    
+    const Tmx::Layer* tmxLayer = mTmxMap->GetLayer(layer);
+    
+    for (int y=0; y<tmxLayer->GetHeight(); ++y) {
+        for (int x=0; x<tmxLayer->GetWidth(); ++x) {
+            Tmx::MapTile tile = tmxLayer->GetTile(x, y);
+            
+            if (tile.id == 0) {
+                continue;
+            }
+            
+            if (tile.tilesetId < mTmxMap->GetNumTilesets()) {
+                const Tmx::Tileset* tileset;
+                
+                tileset = mTmxMap->GetTileset(tile.tilesetId);
+                if (tile.id >= tileset->GetFirstGid()) {
+                    // Found the right tileset
+                    const int id = tile.id - tileset->GetFirstGid() + 1;
+                    const int tilesetWidth = tileset->GetImage()->GetWidth();
+                    const int tileWidth = tileset->GetTileWidth();
+                    const int tileHeight = tileset->GetTileHeight();
+                    const int numColumns = tilesetWidth / tileWidth;
+                    
+                    int column = id % numColumns;
+                    int row = id / numColumns;
+                    
+                    SDL_Rect srcRect;
+                    srcRect.x = tileset->GetMargin() +
+                                (tileset->GetTileWidth() +
+                                tileset->GetSpacing()) * column;
+                    srcRect.y = tileset->GetMargin() +
+                                (tileset->GetTileHeight() +
+                                tileset->GetSpacing()) * row;
+                    srcRect.w = tileset->GetTileWidth();
+                    srcRect.h = tileset->GetTileHeight();
+                    
+                    SDL_Rect dstRect;
+                    dstRect.x = x * tileWidth;
+                    dstRect.y = y * tileHeight;
+                    dstRect.w = tileWidth;
+                    dstRect.h = tileHeight;
+                    
+                    // TODO fix this
+                    window->render(mTilesetTexture[0], &srcRect, &dstRect);
+                }
+            }
+        }
+    }
+
+#if 0
+    // Iterate through the layers
+    for (int i=0; i<mTmxMap->GetNumLayers(); ++i) {
+        std::string tileInfo;
+        char temp[16];
+        Log(LOG_DEBUG, "Layer: %d Name: %s", i, map->GetLayer(i)->GetName().c_str());
+        
+        // Get a layer
+        const Tmx::Layer* layer = map->GetLayer(i);
+        
+        for (int y=0; y<layer->GetHeight(); ++y) {
+            for (int x=0; x<layer->GetWidth(); ++x) {
+                char flippedHorizontally = ' ';
+                char flippedVertically = ' ';
+                char flippedDiagonally = ' ';
+                
+                if (layer->IsTileFlippedHorizontally(x, y)) {
+                    flippedHorizontally = 'h';
+                }
+                
+                if (layer->IsTileFlippedVertically(x, y)) {
+                    flippedVertically = 'v';
+                }
+                
+                if (layer->IsTileFlippedDiagonally(x, y)) {
+                    flippedDiagonally = 'd';
+                }
+                
+                sprintf(temp, "%03d%c%c%c ",
+                        layer->GetTileId(x, y),
+                        flippedHorizontally,
+                        flippedVertically,
+                        flippedDiagonally);
+                
+                tileInfo += temp;
+                
+                // Find a tileset for that id
+                const Tmx::Tileset* tileset = map->FindTileset(layer->GetTileId(x, y));
+            }
+            
+            // Print out one row
+            Log(LOG_DEBUG, "%s", tileInfo.c_str());
+            tileInfo.clear();
+        }
+    }
+#endif
     return true;
 }

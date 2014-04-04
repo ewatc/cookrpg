@@ -52,6 +52,8 @@
 		4CB8171818D671BB002FF815 /* surface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB8171618D671BB002FF815 /* surface.cpp */; };
 		4CB8171B18D6758C002FF815 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB8171918D6758C002FF815 /* window.cpp */; };
 		4CB8171E18D68C6A002FF815 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CB8171D18D68C6A002FF815 /* SDL2_image.framework */; };
+		4CB8172118EF4F47002FF815 /* tiles_12_by_Buch.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4CB8172018EF4F3C002FF815 /* tiles_12_by_Buch.png */; };
+		4CB8172218EF4F4D002FF815 /* game_world.tmx in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4CB8171F18EF4F3C002FF815 /* game_world.tmx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -72,6 +74,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				4CB8172218EF4F4D002FF815 /* game_world.tmx in CopyFiles */,
+				4CB8172118EF4F47002FF815 /* tiles_12_by_Buch.png in CopyFiles */,
 				4CB8171118D65E86002FF815 /* tmw_desert_spacing.png in CopyFiles */,
 				4CB8170F18D65DB2002FF815 /* example.tmx in CopyFiles */,
 			);
@@ -167,6 +171,8 @@
 		4CB8171A18D6758C002FF815 /* window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = window.h; path = ../../../../window.h; sourceTree = "<group>"; };
 		4CB8171C18D684C2002FF815 /* textureinterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = textureinterface.h; path = ../../../../textureinterface.h; sourceTree = "<group>"; };
 		4CB8171D18D68C6A002FF815 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
+		4CB8171F18EF4F3C002FF815 /* game_world.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = game_world.tmx; path = ../../resources/game_world.tmx; sourceTree = "<group>"; };
+		4CB8172018EF4F3C002FF815 /* tiles_12_by_Buch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tiles_12_by_Buch.png; path = ../../resources/tiles_12_by_Buch.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +191,8 @@
 		4C64AC1D18D4D41C0060D651 = {
 			isa = PBXGroup;
 			children = (
+				4CB8171F18EF4F3C002FF815 /* game_world.tmx */,
+				4CB8172018EF4F3C002FF815 /* tiles_12_by_Buch.png */,
 				4CB8171D18D68C6A002FF815 /* SDL2_image.framework */,
 				4CB8171218D663BB002FF815 /* README.md */,
 				4CB8171018D65E7E002FF815 /* tmw_desert_spacing.png */,
