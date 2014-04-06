@@ -50,6 +50,10 @@ bool CookRPGGame::loadResources()
 {
     std::string tmxFile = "game_world.tmx";
     
+    // Testing
+    // TODO: Read this from a file
+    //std::string tmxFile = "example.tmx";
+    
     if (!mMap.loadMap(mWindow, tmxFile.c_str())) {
         Log(LOG_ERROR, "unable to load %s map", tmxFile.c_str());
     }
@@ -63,8 +67,6 @@ bool CookRPGGame::unloadResources()
         Log(LOG_ERROR, "unable to unload map");
     }
 
-    
-    
     return true;
 }
 

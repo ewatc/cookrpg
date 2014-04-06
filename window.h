@@ -26,7 +26,14 @@ public:
     
     std::shared_ptr<TextureInterface> createTexture(std::shared_ptr<Surface> surface);
     
-    void render(std::shared_ptr<TextureInterface> texture, SDL_Rect *src, SDL_Rect *dst);
+    void render(std::shared_ptr<TextureInterface> texture,
+                const SDL_Rect *src,
+                const SDL_Rect *dst);
+    
+    void render(std::shared_ptr<TextureInterface> texture,
+                const SDL_Rect *src,
+                const SDL_Rect *dst,
+                SDL_RendererFlip flipFlags);
     
     void clear();
     

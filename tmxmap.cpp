@@ -93,6 +93,8 @@ bool TmxMap::renderLayer(std::shared_ptr<Window> window, unsigned int layer)
     
     const Tmx::Layer* tmxLayer = mTmxMap->GetLayer(layer);
     
+    
+    // This is not optimized, but it gets the job done
     for (int y=0; y<tmxLayer->GetHeight(); ++y) {
         for (int x=0; x<tmxLayer->GetWidth(); ++x) {
             Tmx::MapTile tile = tmxLayer->GetTile(x, y);
@@ -132,8 +134,23 @@ bool TmxMap::renderLayer(std::shared_ptr<Window> window, unsigned int layer)
                     dstRect.w = tileWidth;
                     dstRect.h = tileHeight;
                     
-                    // TODO fix this
-                    window->render(mTilesetTexture[0], &srcRect, &dstRect);
+                    SDL_RendererFlip hflip = SDL_FLIP_NONE;
+                    SDL_RendererFlip vflip = SDL_FLIP_NONE;
+                    if (tmxLayer->IsTileFlippedHorizontally(x, y)) {
+                        hflip = SDL_FLIP_HORIZONTAL;
+                    }
+                    
+                    if (tmxLayer->IsTileFlippedVertically(x, y)) {
+                        vflip = SDL_FLIP_VERTICAL;
+                    }
+                    
+                    // Render the tile, the last parameter has
+                    // to be casted due to the enum not having
+                    // a value for diagonal.
+                    window->render(mTilesetTexture[0],
+                                   &srcRect,
+                                   &dstRect,
+                                   static_cast<SDL_RendererFlip>(hflip | vflip));
                 }
             }
         }

@@ -107,9 +107,25 @@ std::shared_ptr<TextureInterface> Window::createTexture(std::shared_ptr<Surface>
     return tex;
 }
 
-void Window::render(std::shared_ptr<TextureInterface> texture, SDL_Rect *src, SDL_Rect *dst)
+void Window::render(std::shared_ptr<TextureInterface> texture,
+                    const SDL_Rect *src,
+                    const SDL_Rect *dst)
 {
     SDL_RenderCopy(mRenderer, texture->getSDLTexture(), src, dst);
+}
+
+void Window::render(std::shared_ptr<TextureInterface> texture,
+                    const SDL_Rect *src,
+                    const SDL_Rect *dst,
+                    SDL_RendererFlip flipFlags)
+{
+    SDL_RenderCopyEx(mRenderer,
+                     texture->getSDLTexture(),
+                     src,
+                     dst,
+                     0,
+                     nullptr,
+                     flipFlags);
 }
 
 void Window::clear()
