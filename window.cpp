@@ -121,6 +121,25 @@ std::shared_ptr<TextureInterface> Window::createTexture(std::shared_ptr<Surface>
     return tex;
 }
 
+void Window::pruneTextures()
+{
+    TextureMap::iterator it;
+    
+    for (it = mTextures.begin(); it != mTextures.end();) {
+        if (it->second.use_count() == 1) {
+            Log(LOG_DEBUG, "Texture[%s] removing texture",
+                it->second->getFilename().c_str());
+            
+            mTextures.erase(it++);
+        } else {
+            Log(LOG_DEBUG, "Texture[%s] keeping texture use_cout=%ld",
+                it->second->getFilename().c_str(),
+                it->second.use_count());
+            it++;
+        }
+    }
+}
+
 void Window::render(std::shared_ptr<TextureInterface> texture,
                     const SDL_Rect *src,
                     const SDL_Rect *dst)

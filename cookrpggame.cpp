@@ -67,6 +67,8 @@ bool CookRPGGame::unloadResources()
         Log(LOG_ERROR, "unable to unload map");
     }
 
+    mWindow->pruneTextures();
+    
     return true;
 }
 

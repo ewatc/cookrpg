@@ -27,6 +27,7 @@ public:
     bool uninit();
     
     std::shared_ptr<TextureInterface> createTexture(std::shared_ptr<Surface> surface);
+    void pruneTextures();
     
     void render(std::shared_ptr<TextureInterface> texture,
                 const SDL_Rect *src,

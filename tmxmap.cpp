@@ -80,6 +80,7 @@ bool TmxMap::loadMap(std::shared_ptr<Window> window, const std::string& filename
 bool TmxMap::unloadMap()
 {
     mTmxMap = nullptr;
+    mTilesetTexture.clear();
 
     return true;
 }
