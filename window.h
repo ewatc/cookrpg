@@ -10,6 +10,8 @@
 #define __cookrpg__window__
 
 #include <memory>
+#include <map>
+#include <string>
 #include <SDL2/SDL.h>
 #include "textureinterface.h"
 #include "surface.h"
@@ -46,6 +48,9 @@ private:
     SDL_Window* mWindow;
     SDL_Renderer* mRenderer;
     SDL_Surface* mPrimarySurface;
+    
+    typedef std::map<std::string, std::shared_ptr<TextureInterface>> TextureMap;
+    TextureMap mTextures;
     
     bool mInitialized;
 };

@@ -95,13 +95,27 @@ bool Window::uninit()
 
 std::shared_ptr<TextureInterface> Window::createTexture(std::shared_ptr<Surface> surface)
 {
-    std::shared_ptr<Texture> tex(new Texture(mRenderer));
+    std::shared_ptr<TextureInterface> tex;
+    TextureMap::iterator it;
     
-    if (tex != nullptr) {
-        if (!tex->load(surface)) {
-            // error
-            return nullptr;
+    it = mTextures.find(surface->getFilename());
+    if (it == mTextures.end()) {
+        std::shared_ptr<Texture> newtex(new Texture(mRenderer));
+        
+        if (newtex != nullptr) {
+            if (!newtex->load(surface)) {
+                // error
+                tex = nullptr;
+            } else {
+                // success
+                tex = newtex;
+                
+                mTextures[surface->getFilename()] = tex;
+            }
         }
+    } else {
+        // texture found
+        tex = it->second;
     }
     
     return tex;
