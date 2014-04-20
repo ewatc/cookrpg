@@ -20,13 +20,18 @@ public:
 
     bool renderLayer(std::shared_ptr<Window> window, unsigned int layer);
     
-    int layers() const { return mLayers; }
+    int layerCount() const { return mLayerCount; }
 
 private:
+    void generateLayerTexture(std::shared_ptr<Window> window,
+                              std::shared_ptr<TextureInterface> layerTexture,
+                              unsigned int layer);
+    
     std::unique_ptr<Tmx::Map> mTmxMap;
-    int mLayers;
+    int mLayerCount;
     
     std::vector<std::shared_ptr<TextureInterface>> mTilesetTexture;
+    std::vector<std::shared_ptr<TextureInterface>> mLayers;
 };
 
 #endif

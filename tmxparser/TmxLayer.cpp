@@ -203,7 +203,7 @@ namespace Tmx
 			// Use the utility class for decompressing (which uses zlib)
 			out = (unsigned *)Util::DecompressGZIP(
 				text.c_str(),
-				text.size(),
+				static_cast<int>(text.size()),
 				width * height * 4);
 		}
 		else

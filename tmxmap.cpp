@@ -1,7 +1,7 @@
 #include "tmxmap.h"
 #include "log.h"
 
-TmxMap::TmxMap() : mLayers(0)
+TmxMap::TmxMap() : mLayerCount(0)
 {
 
 }
@@ -72,7 +72,33 @@ bool TmxMap::loadMap(std::shared_ptr<Window> window, const std::string& filename
 
     // success
     mTmxMap = std::move(map);
-    mLayers = mTmxMap->GetNumLayers();
+    mLayerCount = static_cast<int>(mTmxMap->GetNumLayers());
+    
+    // Iterate through layers
+    for (int i=0; i<mTmxMap->GetNumLayers(); ++i) {
+        std::shared_ptr<TextureInterface> texture;
+        const int width = mTmxMap->GetWidth() * mTmxMap->GetTileWidth();
+        const int height = mTmxMap->GetHeight() * mTmxMap->GetTileHeight();
+        
+        // TODO: Make this better
+        std::string temp = filename + " Layer" + (char)('0' + i);
+        texture = window->createTexture(temp,
+                                        width,
+                                        height,
+                                        SDL_PIXELFORMAT_ARGB8888);
+        if (texture) {
+            Log(LOG_DEBUG, "Created Layer %s - %dx%d",
+                temp.c_str(), width, height);
+        
+            generateLayerTexture(window, texture, i);
+            
+            mLayers.push_back(texture);
+        } else {
+            Log(LOG_ERROR, "Unable to create layer texture %dx%d - %s",
+                width, height,
+                SDL_GetError());
+        }
+    }
     
     return true;
 }
@@ -81,24 +107,31 @@ bool TmxMap::unloadMap()
 {
     mTmxMap = nullptr;
     mTilesetTexture.clear();
+    mLayers.clear();
 
     return true;
 }
 
-bool TmxMap::renderLayer(std::shared_ptr<Window> window, unsigned int layer)
+void TmxMap::generateLayerTexture(std::shared_ptr<Window> window,
+                                  std::shared_ptr<TextureInterface> layerTexture,
+                                  unsigned int layer)
 {
     if (layer >= mTmxMap->GetNumLayers()) {
         // nothing to draw
-        return true;
+        return;
     }
+    
+    window->clear(layerTexture);
     
     const Tmx::Layer* tmxLayer = mTmxMap->GetLayer(layer);
     
+    const int maxTileY = mTmxMap->GetHeight();
+    const int maxTileX = mTmxMap->GetWidth();
     
     // This is not optimized, but it gets the job done
-    for (int y=0; y<tmxLayer->GetHeight(); ++y) {
-        for (int x=0; x<tmxLayer->GetWidth(); ++x) {
-            Tmx::MapTile tile = tmxLayer->GetTile(x, y);
+    for (int tileY=0; tileY<maxTileY; ++tileY) {
+        for (int tileX=0; tileX<maxTileX; ++tileX) {
+            Tmx::MapTile tile = tmxLayer->GetTile(tileX, tileY);
             
             if (tile.id == 0) {
                 continue;
@@ -116,8 +149,101 @@ bool TmxMap::renderLayer(std::shared_ptr<Window> window, unsigned int layer)
                     const int tileHeight = tileset->GetTileHeight();
                     const int numColumns = tilesetWidth / tileWidth;
                     
-                    int column = id % numColumns;
-                    int row = id / numColumns;
+                    const int column = id % numColumns;
+                    const int row = id / numColumns;
+                    
+                    SDL_Rect srcRect;
+                    srcRect.x = tileset->GetMargin() +
+                    (tileset->GetTileWidth() +
+                     tileset->GetSpacing()) * column;
+                    srcRect.y = tileset->GetMargin() +
+                    (tileset->GetTileHeight() +
+                     tileset->GetSpacing()) * row;
+                    srcRect.w = tileset->GetTileWidth();
+                    srcRect.h = tileset->GetTileHeight();
+                    
+                    SDL_Rect dstRect;
+                    dstRect.x = tileX * tileWidth;
+                    dstRect.y = tileY * tileHeight;
+                    dstRect.w = tileWidth;
+                    dstRect.h = tileHeight;
+                    
+                    SDL_RendererFlip hflip = SDL_FLIP_NONE;
+                    SDL_RendererFlip vflip = SDL_FLIP_NONE;
+                    if (tmxLayer->IsTileFlippedHorizontally(tileX, tileY)) {
+                        hflip = SDL_FLIP_HORIZONTAL;
+                    }
+                    
+                    if (tmxLayer->IsTileFlippedVertically(tileX, tileY)) {
+                        vflip = SDL_FLIP_VERTICAL;
+                    }
+                    
+                    // Render the tile, the last parameter has
+                    // to be casted due to the enum not having
+                    // a value for diagonal.
+                    window->render(layerTexture,
+                                   mTilesetTexture[0],
+                                   &srcRect,
+                                   &dstRect,
+                                   static_cast<SDL_RendererFlip>(hflip | vflip));
+                }
+            }
+        }
+    }
+}
+
+bool TmxMap::renderLayer(std::shared_ptr<Window> window, unsigned int layer)
+{
+    if (layer >= mTmxMap->GetNumLayers()) {
+        // nothing to draw
+        return true;
+    }
+    
+    SDL_Rect srcRect;
+    srcRect.x = 0;
+    srcRect.y = 0;
+    srcRect.w = window->getWidth();
+    srcRect.h = window->getHeight();
+    
+    SDL_Rect dstRect;
+    dstRect.x = 0;
+    dstRect.y = 0;
+    dstRect.w = window->getWidth();
+    dstRect.h = window->getHeight();
+    
+    window->render(mLayers[layer],
+                   &srcRect,
+                   &dstRect);
+    
+#if 0
+    const Tmx::Layer* tmxLayer = mTmxMap->GetLayer(layer);
+    
+    const int maxTileY = mTmxMap->GetHeight();
+    const int maxTileX = mTmxMap->GetWidth();
+    
+    // This is not optimized, but it gets the job done
+    for (int tileY=0; tileY<maxTileY; ++tileY) {
+        for (int tileX=0; tileX<maxTileX; ++tileX) {
+            Tmx::MapTile tile = tmxLayer->GetTile(tileX, tileY);
+            
+            if (tile.id == 0) {
+                continue;
+            }
+            
+            if (tile.tilesetId < mTmxMap->GetNumTilesets()) {
+                const Tmx::Tileset* tileset;
+                
+                tileset = mTmxMap->GetTileset(tile.tilesetId);
+                if (tile.id >= tileset->GetFirstGid()) {
+                    // Found the right tileset
+                    const int id = tile.id - tileset->GetFirstGid() + 1;
+                    const int tilesetWidth = tileset->GetImage()->GetWidth();
+                    const int tileWidth = tileset->GetTileWidth();
+                    const int tileHeight = tileset->GetTileHeight();
+                    const int numColumns = tilesetWidth / tileWidth;
+                    
+                    const int column = id % numColumns;
+                    const int row = id / numColumns;
                     
                     SDL_Rect srcRect;
                     srcRect.x = tileset->GetMargin() +
@@ -130,18 +256,18 @@ bool TmxMap::renderLayer(std::shared_ptr<Window> window, unsigned int layer)
                     srcRect.h = tileset->GetTileHeight();
                     
                     SDL_Rect dstRect;
-                    dstRect.x = x * tileWidth;
-                    dstRect.y = y * tileHeight;
+                    dstRect.x = tileX * tileWidth;
+                    dstRect.y = tileY * tileHeight;
                     dstRect.w = tileWidth;
                     dstRect.h = tileHeight;
                     
                     SDL_RendererFlip hflip = SDL_FLIP_NONE;
                     SDL_RendererFlip vflip = SDL_FLIP_NONE;
-                    if (tmxLayer->IsTileFlippedHorizontally(x, y)) {
+                    if (tmxLayer->IsTileFlippedHorizontally(tileX, tileY)) {
                         hflip = SDL_FLIP_HORIZONTAL;
                     }
                     
-                    if (tmxLayer->IsTileFlippedVertically(x, y)) {
+                    if (tmxLayer->IsTileFlippedVertically(tileX, tileY)) {
                         vflip = SDL_FLIP_VERTICAL;
                     }
                     
@@ -156,7 +282,7 @@ bool TmxMap::renderLayer(std::shared_ptr<Window> window, unsigned int layer)
             }
         }
     }
-
+#endif
 #if 0
     // Iterate through the layers
     for (int i=0; i<mTmxMap->GetNumLayers(); ++i) {

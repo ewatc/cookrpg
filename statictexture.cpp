@@ -1,27 +1,29 @@
 //
-//  texture.cpp
+//  statictexture.cpp
 //  cookrpg
 //
-//  Created by Wayne Moorefield on 3/16/14.
+//  Created by Wayne Moorefield on 4/19/14.
 //  Copyright (c) 2014 East Wake Academy Tech Club. All rights reserved.
 //
 
-#include "texture.h"
+#include "statictexture.h"
 
-Texture::Texture(SDL_Renderer* renderer) :
+StaticTexture::StaticTexture(SDL_Renderer* renderer) :
+    mWidth(0),
+    mHeight(0),
     mRenderer(renderer),
     mTexture(nullptr)
 {
 }
 
-Texture::~Texture()
+StaticTexture::~StaticTexture()
 {
-    if (!unload()) {
+    if (!destroy()) {
         // error
     }
 }
 
-bool Texture::load(std::shared_ptr<Surface> surface)
+bool StaticTexture::create(std::shared_ptr<Surface> surface)
 {
     if (mRenderer != nullptr && surface != nullptr) {
         mTexture = SDL_CreateTextureFromSurface(mRenderer,
@@ -30,8 +32,8 @@ bool Texture::load(std::shared_ptr<Surface> surface)
             // error
             return false;
         }
-    
-        mFilename = surface->getFilename();
+        
+        mName = surface->getFilename();
         
         SDL_QueryTexture(mTexture, nullptr, nullptr, &mWidth, &mHeight);
         
@@ -41,11 +43,14 @@ bool Texture::load(std::shared_ptr<Surface> surface)
     return false;
 }
 
-bool Texture::unload()
+bool StaticTexture::destroy()
 {
     if (mTexture) {
-        
+        SDL_DestroyTexture(mTexture);
+        mTexture = nullptr;
     }
+    
     return true;
 }
+
 

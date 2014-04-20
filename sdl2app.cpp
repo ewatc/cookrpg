@@ -2,6 +2,21 @@
 #include "log.h"
 #include "window.h"
 
+//#define PERFORMANCE_CHECKING
+
+#ifdef PERFORMANCE_CHECKING
+#define PERFCHECK_BEGIN() \
+    do {   \
+        unsigned int performanceTicks = SDL_GetTicks()
+#define PERFCHECK_END(tag) \
+        Log(LOG_DEBUG, "%s took %dms",  \
+            tag, SDL_GetTicks() - performanceTicks); \
+    } while(0)
+#else
+#define PERFCHECK_BEGIN()
+#define PERFCHECK_END(tag)
+#endif
+
 std::shared_ptr<SDL2Application> SDL2Application::create(int argc, char* argv[])
 {
     std::shared_ptr<SDL2Application> app(new SDL2Application());
@@ -26,6 +41,9 @@ std::shared_ptr<SDL2Application> SDL2Application::create(int argc, char* argv[])
 SDL2Application::SDL2Application() :
     mWindow(nullptr)
 {
+    mUpdateCount = 0;
+    mLastFPSTicks = 0;
+    mTicksPerUpdate = 1000.0f / (float)30;
 }
 
 SDL2Application::~SDL2Application()
@@ -87,10 +105,18 @@ void SDL2Application::runGame(GameInterface* game)
     }
 
     while (keepRunning) {
+        unsigned int tempTick = SDL_GetTicks();
+        unsigned int elapsedTicks;
+        
+        elapsedTicks = tempTick - mLastTicks;
+        mLastTicks = elapsedTicks;
+        
         // begin loop
+        PERFCHECK_BEGIN();
         if (!game->onLoopBegin()) {
             keepRunning = false;
         }
+        PERFCHECK_END("onLoopBegin");
 
         // process events
         while (SDL_PollEvent(&event) != 0) {
@@ -105,18 +131,43 @@ void SDL2Application::runGame(GameInterface* game)
         }
 
         // do simulation
+        PERFCHECK_BEGIN();
         if (!game->onSimulation()) {
             keepRunning = false;
         }
+        PERFCHECK_END("onSimulation");
 
         // do rendering
+        PERFCHECK_BEGIN();
         if (!game->onRender()) {
             keepRunning = false;
         }
+        PERFCHECK_END("onRender");
 
         // end loop
+        PERFCHECK_BEGIN();
         if (!game->onLoopEnd()) {
             keepRunning = false;
+        }
+        PERFCHECK_END("onLoopEnd");
+        
+        // Handle overall rate limiter
+        {
+            unsigned int nextUpdate;
+            unsigned int currTick;
+            
+            ++mUpdateCount;
+            
+            currTick = SDL_GetTicks();
+            nextUpdate = mLastFPSTicks + ((float)mUpdateCount + mTicksPerUpdate);
+            
+            if (currTick <= nextUpdate) {
+                const unsigned int ticks = nextUpdate - currTick;
+                SDL_Delay(ticks);
+            } else {
+                mUpdateCount = 0;
+                mLastFPSTicks = SDL_GetTicks();
+            }
         }
     }
 

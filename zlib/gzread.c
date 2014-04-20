@@ -30,10 +30,16 @@ local int gz_load(state, buf, len, have)
     *have = 0;
     do {
         ssize_t myret;
-        ret = read(state->fd, (buf + *have), (len - *have));
-        if (ret <= 0)
+        myret = read(state->fd, (buf + *have), (len - *have));
+        if (myret <= 0) {
+            ret = -1;
             break;
-        *have += ret;
+        } else if (myret == 0) {
+            ret = 0;
+        } else {
+            ret = 1;
+        }
+        *have += myret;
     } while (*have < len);
     if (ret < 0) {
         gz_error(state, Z_ERRNO, zstrerror());

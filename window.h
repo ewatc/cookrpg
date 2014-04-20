@@ -27,6 +27,13 @@ public:
     bool uninit();
     
     std::shared_ptr<TextureInterface> createTexture(std::shared_ptr<Surface> surface);
+    std::shared_ptr<TextureInterface> createTexture(const std::string& name,
+                                                    int width, int height,
+                                                    int pixelFormat);
+    int getPixelFormat() const;
+    int getWidth() const { return mWidth; }
+    int getHeight() const { return mHeight; }
+    
     void pruneTextures();
     
     void render(std::shared_ptr<TextureInterface> texture,
@@ -38,7 +45,20 @@ public:
                 const SDL_Rect *dst,
                 SDL_RendererFlip flipFlags);
     
+    void render(std::shared_ptr<TextureInterface> dstTexture,
+                std::shared_ptr<TextureInterface> srcTexture,
+                const SDL_Rect* src,
+                const SDL_Rect* dst);
+
+    void render(std::shared_ptr<TextureInterface> dstTexture,
+                std::shared_ptr<TextureInterface> srcTexture,
+                const SDL_Rect* src,
+                const SDL_Rect* dst,
+                SDL_RendererFlip flipFlags);
+    
     void clear();
+    
+    void clear(std::shared_ptr<TextureInterface> texture);
     
     void flip();
     
@@ -54,6 +74,8 @@ private:
     TextureMap mTextures;
     
     bool mInitialized;
+    int mWidth;
+    int mHeight;
 };
 
 #endif /* defined(__cookrpg__window__) */

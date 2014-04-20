@@ -96,10 +96,10 @@ namespace Tmx
         // Populate the tile list
         int tileCount = (image->GetWidth() / tile_width) * (image->GetHeight() / tile_height);
 
-        int tId = tiles.size();
+        size_t tId = tiles.size();
         while (tId < tileCount)
         {
-            Tile* tile = new Tile(tId);
+            Tile* tile = new Tile(static_cast<int>(tId));
             tiles.push_back(tile);
             tId++;
         }

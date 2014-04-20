@@ -20,7 +20,7 @@ public:
     
     virtual SDL_Texture* getSDLTexture() = 0;
     
-    virtual std::string getFilename() const = 0;
+    virtual std::string getName() const = 0;
 };
 
 

@@ -25,6 +25,10 @@ private:
     SDL2Application();
 
     std::shared_ptr<Window> mWindow;
+    unsigned int mLastTicks;
+    unsigned int mUpdateCount;
+    unsigned int mLastFPSTicks;
+    float mTicksPerUpdate;
 };
 
 

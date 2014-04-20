@@ -94,7 +94,7 @@ bool CookRPGGame::onRender()
 
     // Render Map
     // TODO multiple layers
-    for (int i=0; i<mMap.layers(); ++i) {
+    for (int i=0; i<mMap.layerCount(); ++i) {
         mMap.renderLayer(mWindow, i);
     }
     
