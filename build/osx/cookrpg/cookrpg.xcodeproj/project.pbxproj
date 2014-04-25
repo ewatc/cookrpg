@@ -220,11 +220,11 @@
 		4C64AC2818D4D41C0060D651 /* cookrpg */ = {
 			isa = PBXGroup;
 			children = (
+				4CB816DC18D52EA6002FF815 /* zlib */,
+				4CB816DB18D52E78002FF815 /* tmxparser */,
+				4CB816AB18D52E4F002FF815 /* tinyxml */,
 				4CB8173219036FF7002FF815 /* rendertexture.cpp */,
 				4CB8173319036FF7002FF815 /* rendertexture.h */,
-				4CB816AB18D52E4F002FF815 /* tinyxml */,
-				4CB816DB18D52E78002FF815 /* tmxparser */,
-				4CB816DC18D52EA6002FF815 /* zlib */,
 				4CB8169418D52E1C002FF815 /* cookrpggame.h */,
 				4CB8169518D52E1C002FF815 /* gameinterface.h */,
 				4CB8169618D52E1C002FF815 /* log.h */,
